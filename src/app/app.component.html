@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="jumbotron">
+        <h2>Angular form </h2>
+        <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()" #myForm="ngForm">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text"  class="form-control" formControlName="firstName" [ngClass]="{'is-invalid':form.get('firstName').touched && form.get('firstName').invalid}"  />
+            <div class="invalid-feedback">
+              <div>First Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName" class=" required">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid':form.get('lastName').touched && form.get('lastName').invalid}" required />
+         
+            <div class="invalid-feedback">
+              <div>Last Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class=" required">Email</label>
+            <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}"   />
+            <div *ngIf="form.get('email').touched && form.get('email').invalid"  class="invalid-feedback">
+              <div *ngIf="form.get('email').errors.required">Email Name is required</div>
+              <div *ngIf="form.get('email').errors.email">Email must be a valid email Address</div>
+            </div>
+          </div>
+          <div class="form-group" >
+            <label for="password" class=" required">Password</label>
+            <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}" />
+            <div *ngIf="form.get('password').touched && form.get('password').invalid"  class="invalid-feedback">
+              <div *ngIf="form.get('password').errors.required">Password is required</div>
+              <div *ngIf="form.get('password').errors.minlength">Password  must be a letaset 6 charector</div>
+            </div>
+           
+          </div>
+
+          <div class="form-group">
+            <label for="Address">Address</label>
+            <input type="text" class="form-control"    formControlName="address" />
+            
+          </div>
+          <div class="form-group">
+            <label for="phone" class=" required">Phone</label>
+            <input type="text" class="form-control" formControlName="phone" [ngClass]="{'is-invalid':form.get('phone').touched && form.get('phone').invalid}"   />
+            <div *ngIf="form.get('phone').touched && form.get('phone').invalid"  class="invalid-feedback">
+              <div *ngIf="form.get('phone').errors.required">Phone number is required</div>
+              <div *ngIf="form.get('phone').errors.minlength">Phone number must be valid</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary"  [disabled]="!form.valid">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
